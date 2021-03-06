@@ -6,10 +6,14 @@ require("dotenv").config();
 
 const app = express();
 
+const routes = require("./routes");
+
 app.use(cors());
 app.use(bodyParser.json());
 
 const dbUrl = process.env.DB_URL;
+
+console.log(dbUrl);
 
 if (!dbUrl) {
   console.log("DB not configured correctly: ");
@@ -21,8 +25,7 @@ mongoose.connect(dbUrl, {
   useCreateIndex: true,
 });
 
-const playerRoute = require("./routes");
-app.use("/api/player", playerRoute);
+app.use("/api", routes);
 
 app.use(express.static(__dirname + "/public/"));
 
