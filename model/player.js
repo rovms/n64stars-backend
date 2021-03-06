@@ -18,6 +18,7 @@ const PlayerSchema = new Schema(
     text: {
       type: String,
       required: true,
+      maxlength: 35,
     },
     color: {
       type: String,
@@ -26,6 +27,10 @@ const PlayerSchema = new Schema(
     points: {
       type: [Number],
       default: [],
+    },
+    secret: {
+      type: String,
+      required: true,
     },
   },
   opts
